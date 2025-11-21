@@ -84,23 +84,31 @@ export function DiceRoll() {
                 </motion.div>
             </div>
 
-            <button
+            <motion.button
                 onClick={rollDice}
                 disabled={rolling}
+                whileHover={{ scale: rolling ? 1 : 1.05, boxShadow: "0 0 30px rgba(99, 102, 241, 0.5)" }}
+                whileTap={{ scale: rolling ? 1 : 0.95 }}
                 className={cn(
-                    "px-10 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-bold text-xl shadow-xl transition-all transform hover:scale-105 active:scale-95 hover:shadow-indigo-500/50 border border-white/10",
+                    "px-12 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-indigo-500/50 transition-all",
                     rolling && "opacity-50 cursor-not-allowed"
                 )}
             >
                 {rolling ? "Rolling..." : "Roll Dice"}
-            </button>
+            </motion.button>
 
-            <div className={cn(
-                "text-4xl font-bold text-white transition-all duration-500",
-                rolling ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            )}>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                    opacity: rolling ? 0 : 1,
+                    y: rolling ? 4 : 0,
+                    scale: rolling ? 0.9 : 1
+                }}
+                transition={{ type: "spring" as const, stiffness: 200, damping: 20 }}
+                className="text-4xl font-bold text-white"
+            >
                 Result: <span className="text-indigo-400">{result}</span>
-            </div>
+            </motion.div>
         </div>
     );
 }
