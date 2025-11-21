@@ -62,10 +62,10 @@ export function Dashboard() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col h-screen">
+            <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col min-h-screen">
 
                 {/* Header */}
-                <header className="flex items-center justify-center mb-16 relative">
+                <header className="flex items-center justify-center mb-8 md:mb-16 relative flex-shrink-0">
                     {activeGame && (
                         <button
                             onClick={() => setActiveGame(null)}
@@ -89,7 +89,7 @@ export function Dashboard() {
                 </header>
 
                 {/* Main View */}
-                <main className="flex-1 flex items-center justify-center">
+                <main className="flex-1 flex items-center justify-center overflow-y-auto pb-8">
                     {!activeGame ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-7xl">
                             {games.map((game) => (
@@ -132,7 +132,7 @@ export function Dashboard() {
                 </main>
 
                 {/* Footer */}
-                <footer className="mt-12 text-center text-white/30 text-sm font-medium tracking-widest uppercase">
+                <footer className="mt-8 md:mt-12 text-center text-white/30 text-sm font-medium tracking-widest uppercase flex-shrink-0">
                     © 2025 Random Games Inc.
                 </footer>
             </div>
